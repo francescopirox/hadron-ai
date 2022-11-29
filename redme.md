@@ -1,4 +1,4 @@
 Francesco Aurelio Pironti AKA francescopirox
 Francesco De Luca 
-Simone Amirato AKA parteni
+Simone Amirato AKA PARENTI
 Vincenzo Altomare AKA vivi
