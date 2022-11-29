@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"dipolo"},{"l":"dipolo.board"},{"l":"dipolo.heuristic"},{"l":"dipolo.research"}];updateSearchResults();

@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"hadron"},{"l":"hadron.board"},{"l":"hadron.heuristic"},{"l":"hadron.research"}];updateSearchResults();
