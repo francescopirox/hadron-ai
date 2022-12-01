@@ -1,0 +1,56 @@
+public class MyClass {
+    
+    public static int celleLibere(int[][] matrix){
+        int ret=0;
+        for(int i=0; i<9,i++)
+            for(int j=0; j<9,j++)
+                if(matrix[i][j]==0)
+                    ret++;
+        return ret;
+    }
+    
+    public static int celleOccupate(int[][] matrix){
+        int ret=0;
+        for(int i=0; i<9,i++)
+            for(int j=0; j<9,j++)
+                if(matrix[i][j]!=0)
+                    ret++;
+        return ret;
+    }
+    
+    public static int celleStrictSafe(int[][] matrix){
+        //CASO CROCE INTERNA
+        for(int i=1; i<8,i++)
+            for(int j=1; j<8,j++)
+                if(matrix[i][j]==0)
+                    if(matrix[i-1][j]!=0 && matrix[i][j-1]!=0 && matrix[i+1][j]!=0 && matrix[i][j+1]!=0)
+                        ret++;
+        
+        // CASO VERTICE STRETTO
+        if(matrix[0][0]==0 && matrix[0][1]!=0 && matrix[1][0]!=0 && matrix[0][1]!=matrix[1][0])
+                        ret++;
+        if(matrix[8][8]==0 && matrix[7][8]!=0 && matrix[8][7]!=0 && matrix[7][8]!=matrix[8][7])
+                        ret++;
+        if(matrix[0][8]==0 && matrix[0][7]!=0 && matrix[1][8]!=0 && matrix[1][8]!=matrix[0][7])
+                        ret++;
+        if(matrix[8][0]==0 && matrix[7][0]!=0 && matrix[8][1]!=0 && matrix[7][0]!=matrix[8][1])
+                        ret++;
+        // CASO VERTICE LARGO            
+        if(matrix[0][0]==0 && matrix[0][1]==0 && matrix[1][0]==0 && matrix[2][0]!=0 && matrix[2][0]==matrix[1][1] && matrix[0][2]==matrix[1][1])
+                        ret++;
+        if(matrix[8][8]==0 && matrix[8][7]==0 && matrix[7][8]==0 && matrix[6][8]!=0 && matrix[6][8]==matrix[7][7] && matrix[8][6]==matrix[7][7])
+                        ret++;
+        if(matrix[8][0]==0 && matrix[8][1]==0 && matrix[7][0]==0 && matrix[6][0]!=0 && matrix[6][0]==matrix[7][1] && matrix[8][2]==matrix[7][1])
+                        ret++;
+        if(matrix[0][8]==0 && matrix[1][8]==0 && matrix[0][7]==0 && matrix[0][6]!=0 && matrix[0][6]==matrix[1][7] && matrix[2][8]==matrix[1][7])
+                        ret++;
+        return ret;
+    }
+    
+    public static int celleSafe(int[][] matrix){
+        int ret=0;
+        return ret;
+    }
+    
+    
+}
