@@ -2,7 +2,7 @@ package hadron;
 
 import hadron.board.Board;
 import hadron.board.ByteBoard;
-import hadron.heuristic.GenericHeuristic;
+import hadron.heuristic.HeuristicImpl;
 import hadron.heuristic.Heuristic;
 import hadron.research.GameController;
 import hadron.research.GameControllerImpl;
@@ -26,7 +26,7 @@ public class Player{
 	}
 	
 	public static void main(String[] args) {
-		Heuristic h = new GenericHeuristic();
+		Heuristic h = new HeuristicImpl();
 		Player p1 = new Player(h);	
 		p1.start(args[0], Integer.parseInt(args[1]));
 	}

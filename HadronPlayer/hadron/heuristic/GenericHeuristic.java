@@ -9,6 +9,7 @@ public class GenericHeuristic implements Heuristic {
 	 * Costruttore euristica
 	 */
 	public GenericHeuristic() {
+
 	}
 
 
