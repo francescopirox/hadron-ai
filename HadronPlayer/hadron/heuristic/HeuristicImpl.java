@@ -12,14 +12,14 @@ public class HeuristicImpl implements Heuristic{
 
         int co=celleOccupate(b);
         int cb=celleBloccate(b)+co;
+        int css = celleStrictsafe(b);
         if(co<10) {
 
-            return cb*-100;
+            return cb*-100+css*-10;
         }
         else {
 
             int cs = celleSafe(b, col);
-            int css = celleStrictsafe(b);
 
             int dispari = 1;
             if (css % 2 == 1 && cb > 40) {
