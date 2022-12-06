@@ -3,7 +3,7 @@ package hadron.heuristic;
 import hadron.board.Board;
 
 public class HeuristicImpl implements Heuristic{
-    double[] pesi={-0.05,0.1,10,5};
+    double[] pesi={-0.05,0.1,5,5};
 
     @Override
     public double evaluate(Board b, int col) {
@@ -11,14 +11,22 @@ public class HeuristicImpl implements Heuristic{
         int cb=celleBloccate(b)+co;
         int cs=celleSafe(b,col);
         int css=celleStrictsafe(b);
+        //if css dispari && cs==0
+
+
         System.out.println("AGGIORNAMENTO\nBOARD CORRENTE:\n" +
-                ""+b.toString() +
+
                 "\nDATI CORRENTI:\n\n" +
                 "CELLE LIBERE: " + (9*9-cb)+ "\n"+
                 "CELLE BLOCCATE: "+cb+"\n" +
                 "CELLE SAFE: " + cs+ "\n"+
                 "CELLE STRICTSAFE : "+ css+ "\n");
-        return pesi[0]*(9*9-cb)+pesi[1]*cb+ pesi[2]*css+pesi[3]*cs;
+
+        int dispari= 1;
+        if(css % 2 == 1) {
+            dispari = 4;
+        }
+        return pesi[0]*(9*9-cb)+pesi[1]*cb+ pesi[2]*dispari*css+pesi[3]*cs;
     }
 
     private int celleStrictsafe(Board b) {
