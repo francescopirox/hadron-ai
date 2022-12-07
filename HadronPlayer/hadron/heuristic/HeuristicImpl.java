@@ -5,6 +5,14 @@ import hadron.board.Board;
 public class HeuristicImpl implements Heuristic{
     double[] pesi={50,-100,-500,-500};
 
+    public HeuristicImpl(double[] pesi) {
+        this.pesi=pesi;
+    }
+
+    public HeuristicImpl() {
+
+    }
+
     @Override
     public double evaluate(Board b, int col) {
         if(b.isFinal())
