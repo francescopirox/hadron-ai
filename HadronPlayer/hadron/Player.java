@@ -16,7 +16,6 @@ public class Player{
 	public Player( Heuristic h) {
 		this.heuristic = h;
 	}
-
 	
 	public void start(String ip, int port) {
 		Board board = new ByteBoard();
