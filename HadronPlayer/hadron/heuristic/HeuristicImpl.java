@@ -2,184 +2,110 @@ package hadron.heuristic;
 
 import hadron.board.Board;
 
-public class HeuristicImpl implements Heuristic{
-    double[] pesi={50,-100,-500,-500};
+public class HeuristicImpl implements Heuristic {
+    double[] pesi = {+10 , -10 , -2000 , -500};
+
+    public HeuristicImpl( double[] pesi ) {
+        this.pesi = pesi;
+    }
+
+    public HeuristicImpl() { }
 
     @Override
-    public double evaluate(Board b, int col) {
-        if(b.isFinal())
+    public double evaluate( Board b , int col ) {
+        if( b.isFinal() )
             return -10000D;
 
-        int co=celleOccupate(b);
-        int cb=celleBloccate(b)+co;
-        int css = celleStrictsafe(b);
-        if(co<10) {
+        int co,cb,cs,css ;
+        co=cb=cs=css=0;
+        int i,j;
 
-            return cb*-100+css*-10;
+        for ( i = 1; i < 8; i++){
+            if( b.getCol(i , 0) != -1 )
+                co += 1;
+            if( b.getCol(0 , i) != -1 )
+                co += 1;
+            if( b.getCol(i , 8) != -1 )
+                co += 1;
+            if( b.getCol(8 , i) != -1 )
+                co += 1;
         }
-        else {
 
-            int cs = celleSafe(b, col);
+        if( b.getCol(0 , 0) != -1 )
+            co += 1;
+        if( b.getCol(0 , 8) != -1 )
+            co += 1;
+        if( b.getCol(8 , 8) != -1 )
+            co += 1;
+        if( b.getCol(8 , 0) != -1 )
+            co += 1;
 
-            int dispari = 1;
-            if (css % 2 == 1 && cb > 40) {
-                dispari = 4;
-            }
-            return pesi[0] * (9 * 9 - cb) + pesi[1] * cb + pesi[2] * dispari * css + pesi[3] * cs;
-        }
-    }
-
-    private int celleStrictsafe(Board b) {
-        int bianche, nere;
-        int ret =0;
-        //CASO CROCE INTERNA
-        for(int i=1; i<8;i++)
-            for(int j=1; j<8;j++)
-                if(b.getCol(i,j)==-1) {
-                    bianche=0;
-                    nere=0;
-                    for(int k = -1; k < 2; k += 2){
-                        bianche += (b.getCol(i + k,  j) + 1)/2;
-                        nere += (b.getCol(i +k , j) + 1)%2;
-                        bianche += (b.getCol(i,  j + k) + 1)/2;
-                        nere += (b.getCol(i , j + k) + 1)%2;
+        for ( i = 1; i < 8; i++)
+            for ( j = 1; j < 8; j++) {
+                if( b.getCol(i , j) != -1 ) {
+                    co += 1;
+                } else {
+                    if( cellaBloccata(b , i , j) )
+                        cb += 1;
+                    else
+                        if( cellaSafe(b , col,i , j) )
+                            cs += 1;
+                        else
+                            if( cellaStrictSafe(b , i , j) )
+                                css += 1;
                     }
-                    if(bianche==nere && nere==2)
-                        ret++;
-                }
-
-        // CASO VERTICE STRETTO
-        if(b.getCol(0,0)==-1 && b.getCol(0,1)!=-1 && b.getCol(1,0)!=-1 && b.getCol(0,1)!=b.getCol(1,0))
-            ret++;
-        if(b.getCol(8,8)==-1 && b.getCol(7,8)!=-1 && b.getCol(8,7)!=-1 && b.getCol(7,8)!=b.getCol(8,7))
-            ret++;
-        if(b.getCol(0,8)==-1 && b.getCol(0,7)!=-1 && b.getCol(1,8)!=-1 && b.getCol(1,8)!=b.getCol(0,7))
-            ret++;
-        if(b.getCol(8,0)==-1 && b.getCol(7,0)!=-1 && b.getCol(8,1)!=-1 && b.getCol(7,0)!=b.getCol(8,1))
-            ret++;
-        // CASO VERTICE LARGO
-        if(b.getCol(0,0)==-1 && b.getCol(0,1)==-1 && b.getCol(1,0)==-1 && b.getCol(2,0)!=-1 && b.getCol(1,1)!=-1 && b.getCol(0,2)!=-1)
-            ret++;
-        if(b.getCol(8,8)==-1 && b.getCol(8,7)==-1 && b.getCol(7,8)==-1 && b.getCol(6,8)!=-1 && b.getCol(7,7)!=-1 && b.getCol(8,6)!=-1)
-            ret++;
-        if(b.getCol(8,0)==-1 && b.getCol(8,1)==-1 && b.getCol(7,0)==-1 && b.getCol(6,0)!=-1 && b.getCol(7,1)!=-1 && b.getCol(8,2)!=-1)
-            ret++;
-        if(b.getCol(0,8)==-1 && b.getCol(1,8)==-1 && b.getCol(0,7)==-1 && b.getCol(0,6)!=-1 && b.getCol(1,7)!=-1 && b.getCol(2,8)!=-1)
-            ret++;
-        return ret;
-    }
-
-    private int celleOccupate(Board b) {
-        int ret=0;
-        for (int i = 0; i < 9; i++) {
-            for (int j = 0; j < 9; j++) {
-                if(b.getCol(i,j)!= -1){
-                    ret +=1;
-                }
             }
+
+        int dispari = 1;
+        int consuma = 1;
+        if( css + cs % 2 == 1) {
+            dispari = 4;
+            consuma = 2;
         }
-        return ret;
-    }
-
-    private int celleBloccate(Board b) {
-        int ret=0;
-        int bianche, nere;
-        //CASO INTERN0
-        for(int i = 1; i < 8; i++)
-            for(int j = 1; j < 8; j++)
-                if(b.getCol(i,j) == -1) {
-                    bianche = 0;
-                    nere = 0;
-                    for(int k = -1; k < 2; k += 2){
-                        bianche += (b.getCol(i + k,  j) + 1)/2;
-                        nere += (b.getCol(i +k , j) + 1)%2;
-                        bianche += (b.getCol(i,  j + k) + 1)/2;
-                        nere += (b.getCol(i , j + k) + 1)%2;
-                    }
-                    if(bianche!=nere)
-                        ret++;
-                }
-        //CASO BORDO
-        for(int i = 1; i < 8; i++) {
-            if (b.getCol(i, 0) == -1) {
-                bianche = 0;
-                nere = 0;
-
-                bianche += (b.getCol(i - 1, 0) + 1) / 2;
-                nere += (b.getCol(i - 1, 0) + 1) % 2;
-
-                bianche += (b.getCol(i, 1) + 1) / 2;
-                nere += (b.getCol(i, 1) + 1) % 2;
-
-                bianche += (b.getCol(i + 1, 0) + 1) / 2;
-                nere += (b.getCol(i + 1, 0) + 1) % 2;
-
-                if (bianche != nere)
-                    ret++;
-            }
-            if (b.getCol(0, i) == -1) {
-                bianche = 0;
-                nere = 0;
-
-                bianche += (b.getCol(0, i-1) + 1) / 2;
-                nere += (b.getCol(0, i - 1) + 1) % 2;
-
-                bianche += (b.getCol(1, i) + 1) / 2;
-                nere += (b.getCol(1, i) + 1) % 2;
-
-                bianche += (b.getCol(0, i + 1) + 1) / 2;
-                nere += (b.getCol(0, i + 1) + 1) % 2;
-
-                if (bianche != nere)
-                    ret++;
-            }
-            if (b.getCol(i, 8) == -1) {
-                bianche = 0;
-                nere = 0;
-
-                bianche += (b.getCol(i - 1, 8) + 1) / 2;
-                nere += (b.getCol(i - 1, 8) + 1) % 2;
-
-                bianche += (b.getCol(i, 7) + 1) / 2;
-                nere += (b.getCol(i, 7) + 1) % 2;
-
-                bianche += (b.getCol(i + 1, 8) + 1) / 2;
-                nere += (b.getCol(i + 1, 8) + 1) % 2;
-
-                if (bianche != nere)
-                    ret++;
-            }
-            if (b.getCol(8, i) == -1) {
-                bianche = 0;
-                nere = 0;
-
-                bianche += (b.getCol(8, i-1) + 1) / 2;
-                nere += (b.getCol(8, i - 1) + 1) % 2;
-
-                bianche += (b.getCol(7, i) + 1) / 2;
-                nere += (b.getCol(7, i) + 1) % 2;
-
-                bianche += (b.getCol(8, i + 1) + 1) / 2;
-                nere += (b.getCol(8, i + 1) + 1) % 2;
-
-                if (bianche != nere)
-                    ret++;
-            }
-
+        if( css+cs % 2 == 0 && cb+co > 70 ) {
+            if( css % 2 ==0 )
+                dispari = -10;
+            else
+                consuma = -20;
         }
-        return ret;
+
+        return pesi[0] * (9 * 9 - co-cb-css-cs) + pesi[1] * (cb+co) + pesi[2] * dispari * css + pesi[3] * cs * consuma;
     }
 
-    private int celleSafe(Board b, int col) {
-        int ret=0;
-        if(b.getCol(0,0)==-1 && b.getCol(1,1)==col)
-            ret++;
-        if(b.getCol(8,0)==-1 && b.getCol(7,1)==col)
-            ret++;
-        if(b.getCol(0,8)==-1 && b.getCol(1,7)==col)
-            ret++;
-        if(b.getCol(8,8)==-1 && b.getCol(7,7)==col)
-            ret++;
-        return ret;
+    private static boolean cellaStrictSafe( Board b , int i , int j ) {
+        int ret = 0;
+        for (int k = i - 1; k < i + 2 && k > -1 && k < 9; k += 2) {
+            ret += b.getPawn(k , j);
+        }
+        for (int h = j - 1; h < j + 2 && j > -1 && j < 9; h += 2) {
+            ret += b.getPawn(i , h);
+        }
+        return ret == 0;
     }
+
+    private static boolean cellaSafe( Board b , int col , int i , int j ) {
+        int ret = 0;
+        for (int k = i - 1; k < i + 2 && k > -1 && k < 9; k += 2)
+            for (int h = j - 1; h < j + 2 && j > -1 && j < 9; h += 2) {
+                if( b.getCol(k , h) != col )
+                    return false;
+            }
+        return true;
+
+    }
+
+    private static boolean cellaBloccata( Board b , int i , int j ) {
+
+        int ret = 0;
+
+        for (int k = i - 1; k < i + 2 && k > -1 && k < 9; k += 2) {
+            ret += b.getPawn(k , j);
+        }
+        for (int h = j - 1; h < j + 2 && j > -1 && j < 9; h += 2) {
+            ret += b.getPawn(i , h);
+        }
+
+        return ret != 0;
+    }
+
 }
