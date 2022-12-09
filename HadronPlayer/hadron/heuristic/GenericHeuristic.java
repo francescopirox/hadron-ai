@@ -2,12 +2,20 @@ package hadron.heuristic;
 
 import hadron.board.Board;
 
+import java.util.Random;
+
 public class GenericHeuristic implements Heuristic {
 	private static final long serialVersionUID = 5783084660998719046L;
-
+	private boolean isRandom=false;
+	Random r= new Random();
 	/**
 	 * Costruttore euristica
+	 * @param i
 	 */
+	public GenericHeuristic( int i ) {
+		isRandom=true;
+	}
+
 	public GenericHeuristic() {
 
 	}
@@ -19,7 +27,9 @@ public class GenericHeuristic implements Heuristic {
 		// col è il vincitore
 		if(b.isFinal())
 			return -1000000D;
-
+		if(isRandom) {
+			return r.nextDouble()*10000-5000;
+		}
 		return  0;
 	}
 

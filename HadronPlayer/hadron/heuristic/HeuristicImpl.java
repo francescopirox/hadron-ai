@@ -83,9 +83,6 @@ public class HeuristicImpl implements Heuristic {
                     return false;
                 ret+=val;
 
-
-
-
         }
         for (int h = j - 1; h < j + 2 ; h += 2) {
             if(h > -1 && h < 9)
@@ -93,7 +90,6 @@ public class HeuristicImpl implements Heuristic {
                 if(val==0)
                     return false;
                 ret+=val;
-
         }
         return ret == 0 ;
     }
@@ -106,7 +102,6 @@ public class HeuristicImpl implements Heuristic {
                     return false;
             }
         return true;
-
     }
 
     private static boolean cellaBloccata( Board b , int i , int j ) {
