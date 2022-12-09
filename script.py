@@ -5,7 +5,7 @@ import subprocess
 import random
 
 def varia(pesi,coeff):
-    ret=[0,0,0,0]
+    ret=[0,0,0,0,0]
     rval=(random.random()-0.5)*coeff
     ret[0]=pesi[0]+int(rval)
     rval=(random.random()-0.5)*coeff
@@ -14,6 +14,8 @@ def varia(pesi,coeff):
     ret[2]=pesi[2]+int(rval)
     rval=(random.random()-0.5)*coeff
     ret[3]=pesi[3]+int(rval)
+    rval=(random.random()-0.5)*coeff
+    ret[4]=pesi[4]+int(rval)
     return ret
 
 def test(pesi1,pesi2):
@@ -22,11 +24,11 @@ def test(pesi1,pesi2):
     vincitoreritorno=0;
     s=subprocess.Popen(["java","-jar","Hadron.jar"], stdout=subprocess.PIPE)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
     #p1=Thread(target=os.system,args=(" C:\\Users\\Francesco\\.jdks\openjdk-19.0.1\\bin\\java.exe  -classpath C:\\Users\\Francesco\\IdeaProjects\\hadron-ai\\out\\production\\hadron-ai hadron.ExperimentalPlayer 127.0.0.1 8901",pesi1[0],pesi1[1],pesi1[2],pesi1[3]))
     #Thread(os.system,(" C:\\Users\\Francesco\\.jdks\openjdk-19.0.1\\bin\\java.exe  -classpath C:\\Users\\Francesco\\IdeaProjects\\hadron-ai\\out\\production\\hadron-ai hadron.Player 127.0.0.1 8901",))
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi2[0]),str(pesi2[1]),str(pesi2[2]),str(pesi2[3])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi2[0]),str(pesi2[1]),str(pesi2[2]),str(pesi2[3]),str(pesi2[4])],stdout=subprocess.DEVNULL)
 
     output=s.stdout.read(-1).decode("utf-8")
     var1=output.find("White wins - Black loses")
@@ -39,9 +41,9 @@ def test(pesi1,pesi2):
     print("cambio campo test")
     s=subprocess.Popen(["java","-jar","Hadron.jar"], stdout=subprocess.PIPE)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi2[0]),str(pesi2[1]),str(pesi2[2]),str(pesi2[3])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi2[0]),str(pesi2[1]),str(pesi2[2]),str(pesi2[3]),str(pesi2[4])],stdout=subprocess.DEVNULL)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901", str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
     output=s.stdout.read(-1).decode("utf-8")
     var1=output.find("White wins - Black loses")
     var2=output.find("Black wins - White loses")
@@ -57,8 +59,8 @@ def test(pesi1,pesi2):
     return 0;
 
 
-pesi1=[202,54,-63,-10]
-pesi2=[-65,-27,-57,-10]
+pesi1=[66 , -2 , -200 , 200,-50]
+pesi2=[66 , -100 , -200 , 200,-50]
 
 pesi1=varia(pesi1,8)
 pesi2=varia(pesi2,8)
