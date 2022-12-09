@@ -26,7 +26,7 @@ public class ExperimentalPlayer {
     }
 
     public static void main(String[] args) {
-        double[] pesi= new double[]{Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5])};
+        double[] pesi= new double[]{Integer.parseInt(args[2]), Integer.parseInt(args[3]), Integer.parseInt(args[4]), Integer.parseInt(args[5]),Integer.parseInt(args[6])};
         Heuristic h = new HeuristicImpl(pesi);
         Player p1 = new Player(h);
         p1.start(args[0], Integer.parseInt(args[1]));

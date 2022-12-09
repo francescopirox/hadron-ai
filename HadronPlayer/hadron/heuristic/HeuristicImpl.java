@@ -49,7 +49,7 @@ public class HeuristicImpl implements Heuristic {
                 consuma = -20;
         }
 
-        System.err.println("co: "+co+" cb: "+cb+" cs: "+cs+" csa: "+csa+" css: "+css+" cass: "+cass);
+        System.out.println("co: "+co+" cb: "+cb+" cs: "+cs+" csa: "+csa+" css: "+css+" cass: "+cass);
 
         return pesi[0] * (9 * 9 - co-cb-css-cs-csa-cass) + pesi[1] * (cb+co) + pesi[2] * dispari * (css + cass)+pesi[3]*csa +pesi[4] * cs * consuma;
 
