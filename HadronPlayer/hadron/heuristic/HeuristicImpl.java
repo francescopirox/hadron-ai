@@ -73,14 +73,22 @@ public class HeuristicImpl implements Heuristic {
     }
 
     private static boolean cellaStrictSafe( Board b , int i , int j ) {
-        int ret = 0;
+        int bianca = 0;
+        int nera = 0;
+
         for (int k = i - 1; k < i + 2 && k > -1 && k < 9; k += 2) {
-            ret += b.getPawn(k , j);
+            if( b.getPawn(k , j) < 0  )
+                nero++;
+            else
+                bianca++;
         }
         for (int h = j - 1; h < j + 2 && j > -1 && j < 9; h += 2) {
-            ret += b.getPawn(i , h);
+            if( b.getPawn(k , j) < 0  )
+                nero++;
+            else
+                bianca++;
         }
-        return ret == 0;
+        return bianca == nera && bianca == 2;
     }
 
     private static boolean cellaSafe( Board b , int col , int i , int j ) {
