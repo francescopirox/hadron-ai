@@ -34,24 +34,47 @@ public class HeuristicImpl implements Heuristic {
                 else if( cellaStrictSafe(b , i , j) )
                         css += 1;
                 else if (cellaAngularStrictSafe(b,i,j))
-                        cass+=1;
+                        css+=1;
+                else if (cellaBorderStrictSafe(b,i,j,col))
+                        css+=1;
             }
-        int dispari = 1;
-        int consuma = 1;
-        if( css + cass+ cs % 2 == 1) {
-            dispari = 4;
-            consuma = 2;
+        int fattoreSS = 1;
+        int fattoreS = 1;
+        int fattoreSA = 1;
+        if( css + cs % 2 == 0) {
+            fattoreSS = 4;
+            fattoreS = 2;
         }
-        if( css+cs+cass % 2 == 0 && cb+co > 65 ) {
-            if( css % 2 ==0 )
-                dispari = -10;
-            else
-                consuma = -20;
+        if( css+cs+csa % 2 == 1 && cb+co+css+cs+csa > 75 ) {
+            if( csa != 0){
+                fattoreSA = 10 ;
+            }
+            else{
+                if( css % 2 == 1 )
+                    fattoreSS = -10;
+                else
+                    fattoreS = -20;
+            }
+
+
         }
+        return pesi[0] * (9 * 9 - co-cb-css-cs-csa) + pesi[1] * (cb+co) + pesi[2] * fattoreSS * css+pesi[3]*csa*fattoreSA +pesi[4] * cs * fattoreS;
 
-        System.out.println("co: "+co+" cb: "+cb+" cs: "+cs+" csa: "+csa+" css: "+css+" cass: "+cass);
+    }
 
-        return pesi[0] * (9 * 9 - co-cb-css-cs-csa-cass) + pesi[1] * (cb+co) + pesi[2] * dispari * (css + cass)+pesi[3]*csa +pesi[4] * cs * consuma;
+    private boolean cellaBorderStrictSafe( Board b , int i , int j, int col ) {
+        if(i!=0 && i!=8 || j!=0 && j!=8)
+            return false;
+        if(i==0 && j!=0 && j!=8 && b.getCol(i+1,j-1)==col && b.getCol(i+1,j+1)==col)
+            return true;
+        if(j==0 && i!=0 && i!=8 && b.getCol(i-1,j+1)==col && b.getCol(i+1,j+1)==col)
+            return true;
+        if(i==8 && j!=0 && j!=8 && b.getCol(i-1,j-1)==col && b.getCol(i-1,j+1)==col)
+            return true;
+        if(j==8 && i!=0 && i!=8 && b.getCol(i-1,j-1)==col && b.getCol(i+1,j-1)==col)
+            return true;
+        return false;
+
 
     }
 

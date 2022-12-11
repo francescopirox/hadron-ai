@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="Hadron">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/Hadron.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
