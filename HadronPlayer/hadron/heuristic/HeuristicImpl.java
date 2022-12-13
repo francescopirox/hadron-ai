@@ -65,24 +65,27 @@ public class HeuristicImpl implements Heuristic {
     }
 
     private boolean cellaBorderSafe( Board b , int i , int j, int col ) {
-        if(i!=0 && i!=8 || j!=0 && j!=8)
+
+        if(i == 0 && j!=0 && b.getCol(i+1 , j-1)!= col)
             return false;
-        if(i==0 && j!=0 && j!=8 && b.getCol(i+1,j-1)==col && b.getCol(i+1,j+1)==col)
-            return true;
-        if(j==0 && i!=0 && i!=8 && b.getCol(i-1,j+1)==col && b.getCol(i+1,j+1)==col)
-            return true;
-        if(i==8 && j!=0 && j!=8 && b.getCol(i-1,j-1)==col && b.getCol(i-1,j+1)==col)
-            return true;
-        if(j==8 && i!=0 && i!=8 && b.getCol(i-1,j-1)==col && b.getCol(i+1,j-1)==col)
-            return true;
-        return false;
-
-
+        else if(i==8 && j!=0 && b.getCol(i-1 , j-1)!= col)
+            return false;
+        else if(i==0 && j !=8  && b.getCol(i+1 , j+1)!= col)
+            return false;
+        else if(i==8 && j !=8  && b.getCol(i-1 , j+1)!= col)
+            return false;
+        else if(i != 0 && j==0 && b.getCol(i-1 , j+1)!= col)
+            return false;
+        else if(i!=8 && j==0 && b.getCol(i+1 , j+1)!= col)
+            return false;
+        else if(i!=0 && j ==8  && b.getCol(i-1 , j-1)!= col)
+            return false;
+        else if(i!=8 && j ==8  && b.getCol(i-1 , j-1)!= col)
+            return false;
+        return true;
     }
 
     private boolean cellaAngularStrictSafe( Board b , int i , int j ) {
-
-
         // CASO VERTICE LARGO
         if(i==0 && j==0 && b.getCol(0,1)==-1 && b.getCol(1,0)==-1 && b.getCol(2,0)!=-1 && b.getCol(1,1)!=-1 && b.getCol(0,2)!=-1)
             return true;
@@ -94,26 +97,34 @@ public class HeuristicImpl implements Heuristic {
             return true;
         return false;
 
-
     }
 
     private static boolean cellaStrictSafe( Board b , int i , int j ) {
         int ret = 0;
         int val=0;
-        for (int k = i - 1; k < i + 2 ; k += 2) {
-            if(k > -1 && k < 9)
-                val=b.getPawn(k , j);
-                if(val==0)
-                    return false;
-                ret+=val;
-
+        if(i !=0) {
+            val = b.getPawn(i - 1 , j);
+            if( val == 0 )
+                return false;
+        ret+=val;
         }
-        for (int h = j - 1; h < j + 2 ; h += 2) {
-            if(h > -1 && h < 9)
-                val= b.getPawn(i , h);
-                if(val==0)
-                    return false;
-                ret+=val;
+        if(i !=8){
+            val = b.getPawn(i+1 , j);
+            if( val == 0 )
+                return false;
+            ret+=val;
+         }
+        if(j !=0){
+            val = b.getPawn(i , j-1);
+            if( val == 0 )
+                return false;
+            ret+=val;
+        }
+        if(j !=8){
+            val = b.getPawn(i, j+1);
+            if( val == 0 )
+                return false;
+            ret+=val;
         }
         return ret == 0 ;
     }
