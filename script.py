@@ -27,11 +27,11 @@ def test(pesi1,pesi2):
     vincitoreritorno=0;
     s=subprocess.Popen(["java","-jar","Hadron.jar"], stdout=subprocess.PIPE)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
     #p1=Thread(target=os.system,args=(" C:\\Users\\Francesco\\.jdks\openjdk-19.0.1\\bin\\java.exe  -classpath C:\\Users\\Francesco\\IdeaProjects\\hadron-ai\\out\\production\\hadron-ai hadron.ExperimentalPlayer 127.0.0.1 8901",pesi1[0],pesi1[1],pesi1[2],pesi1[3]))
     #Thread(os.system,(" C:\\Users\\Francesco\\.jdks\openjdk-19.0.1\\bin\\java.exe  -classpath C:\\Users\\Francesco\\IdeaProjects\\hadron-ai\\out\\production\\hadron-ai hadron.Player 127.0.0.1 8901",))
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi2[0]),str(pesi2[1]),str(pesi2[2]),str(pesi2[3]),str(pesi2[4])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi2[0]),str(pesi2[1]),str(pesi2[2]),str(pesi2[3]),str(pesi2[4])],stdout=subprocess.DEVNULL)
 
     output=s.stdout.read(-1).decode("utf-8")
     var1=output.find("White wins - Black loses")
@@ -44,9 +44,9 @@ def test(pesi1,pesi2):
     print("cambio campo test")
     s=subprocess.Popen(["java","-jar","Hadron.jar"], stdout=subprocess.PIPE)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi2[0]),str(pesi2[1]),str(pesi2[2]),str(pesi2[3]),str(pesi2[4])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi2[0]),str(pesi2[1]),str(pesi2[2]),str(pesi2[3]),str(pesi2[4])],stdout=subprocess.DEVNULL)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
     output=s.stdout.read(-1).decode("utf-8")
     var1=output.find("White wins - Black loses")
     var2=output.find("Black wins - White loses")
@@ -68,9 +68,9 @@ def test_zero(pesi1):
     vincitoreritorno=0;
     s=subprocess.Popen(["java","-jar","Hadron.jar"], stdout=subprocess.PIPE)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.DummyPlayer","127.0.0.1","8901"],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.DummyPlayer","127.0.0.1","8901"],stdout=subprocess.DEVNULL)
 
     output=s.stdout.read(-1).decode("utf-8")
     var1=output.find("White wins - Black loses")
@@ -83,9 +83,9 @@ def test_zero(pesi1):
     print("cambio campo test")
     s=subprocess.Popen(["java","-jar","Hadron.jar"], stdout=subprocess.PIPE)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.DummyPlayer","127.0.0.1","8901"],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.DummyPlayer","127.0.0.1","8901"],stdout=subprocess.DEVNULL)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
     output=s.stdout.read(-1).decode("utf-8")
     var1=output.find("White wins - Black loses")
     var2=output.find("Black wins - White loses")
@@ -108,9 +108,9 @@ def test_random(pesi1):
     vincitoreritorno=0;
     s=subprocess.Popen(["java","-jar","Hadron.jar"], stdout=subprocess.PIPE)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.RandomPlayer","127.0.0.1","8901"],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.RandomPlayer","127.0.0.1","8901"],stdout=subprocess.DEVNULL)
 
     output=s.stdout.read(-1).decode("utf-8")
     var1=output.find("White wins - Black loses")
@@ -123,9 +123,9 @@ def test_random(pesi1):
     print("cambio campo test")
     s=subprocess.Popen(["java","-jar","Hadron.jar"], stdout=subprocess.PIPE)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.RandomPlayer","127.0.0.1","8901"],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.RandomPlayer","127.0.0.1","8901"],stdout=subprocess.DEVNULL)
     time.sleep(0.5)
-    subprocess.Popen(["C:\\Program Files\\Java\\jdk-13.0.2\\bin\\java.exe","-classpath","C:\\Users\\fpiro\\Desktop\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
+    subprocess.Popen(["C:\\Users\\Francesco De Luca\\.jdks\\openjdk-19.0.1\\bin\\java.exe","-classpath","C:\\Users\Francesco De Luca\\Documents\\GitHub\\hadron-ai\\out\\production\\hadron-ai","hadron.ExperimentalPlayer","127.0.0.1","8901",str(pesi1[0]),str(pesi1[1]),str(pesi1[2]),str(pesi1[3]),str(pesi1[4])],stdout=subprocess.DEVNULL)
     output=s.stdout.read(-1).decode("utf-8")
     var1=output.find("White wins - Black loses")
     var2=output.find("Black wins - White loses")
@@ -175,55 +175,54 @@ def genera_pesi(n, pesi):
         ret[index]=0
     return ret
 
-def vittoria(pesi,coeff,n,risultati):
-    print("vittoria heu")
+def vittoria(pesi,coeff,risultati):
+    print("Vittoria heu\n")
     risultati[3]+=1
     risultati[0] +=1
     if random.random()>0.96:
         return varia(pesi, coeff)
-    coeff=coeff/1.2
     return pesi
 
-def sconfitta(pesi,n,coeff,risultati):
+def sconfitta(pesi,coeff,n,risultati):
 
     if n==0:
-        print(" Sconfitta contro Dummy")
-
+        print("Sconfitta contro Dummy")
     elif n==1:
-        print(" Sconfitta contro Random")
+        print("Sconfitta contro Random")
     elif n==2:
-        print(" Sconfitta contro pesi random")
+        print("Sconfitta contro pesi random")
     elif n==3:
-        print(" Sconfitta contro pesi mancanti random")
+        print("Sconfitta contro pesi mancanti random")
     else :
         print("Sconfitta")
+    print("\n")
     risultati[3]=0
     risultati[1]+=1
     coeff=coeff*1.2
     return varia(pesi,coeff)
 
-def pareggio(pesi,n,coeff,risultati):
+def pareggio(pesi,coeff,n,risultati):
     if n==0:
-        print(" Pareggio contro Dummy")
+        print("Pareggio contro Dummy")
 
     elif n==1:
-        print(" Pareggio contro Random")
+        print("Pareggio contro Random")
     elif n==2:
-        print(" pa contro pesi random")
+        print("Pareggio contro pesi random")
     elif n==3:
-        print(" pareggio contro pesi mancanti random")
+        print("Pareggio contro pesi mancanti random")
     else:
-        print("pareggio")
+        print("Pareggio")
     risultati[3]=0
     risultati[2]+=1
     coeff=coeff*1.1
     return varia(pesi,coeff)
 
 def statistica(risultati):
-    return "Vittorie :"+str(risultati[0])+" pareggi: "+ str(risultati[1])+" Pareggi: "+str(risultati[2])+" Serie: "+str(risultati[3])
+    return "\nVittorie: "+str(risultati[0])+"\nSconfitte: "+ str(risultati[1])+"\nPareggi: "+str(risultati[2])+"\nSerie: "+str(risultati[3])+"\n"
 
 
-pesi1=[10 , -10 , -10 , 10,-10]
+pesi1=[10 , -10 , -1000 , 500, -500]
 
 coeff=10
 passi=150
@@ -236,7 +235,7 @@ for passo in range(passi):
     if type == 1:
         val =test_random(pesi1)
         if val == 1:
-            pesi1=vittoria(pesi1,coeff,1,risultati)
+            pesi1=vittoria(pesi1,coeff,risultati)
         elif  val == 2:
             pesi1=sconfitta(pesi1,coeff,1,risultati)
         else:
@@ -245,7 +244,7 @@ for passo in range(passi):
     if type == 0:
         val =test_zero(pesi1)
         if val == 1:
-            pesi1=vittoria(pesi1,coeff,0,risultati)
+            pesi1=vittoria(pesi1,coeff,risultati)
         elif  val == 2:
             pesi1=sconfitta(pesi1,coeff,0,risultati)
         else:
@@ -254,7 +253,7 @@ for passo in range(passi):
     if type == 2:
         val =test(pesi1,genera_pesi_random())
         if val == 1:
-            pesi1=vittoria(pesi1,coeff,2,risultati)
+            pesi1=vittoria(pesi1,coeff,risultati)
         elif  val == 2:
             pesi1=sconfitta(pesi1,coeff,2,risultati)
         else:
@@ -264,7 +263,7 @@ for passo in range(passi):
     if type == 3:
         val =test(pesi1,genera_pesi(0,pesi1))
         if val == 1:
-            pesi1=vittoria(pesi1,coeff,3,risultati)
+            pesi1=vittoria(pesi1,coeff,risultati)
         elif  val == 2:
             pesi1=sconfitta(pesi1,coeff,3,risultati)
         else:
@@ -273,7 +272,7 @@ for passo in range(passi):
     if type == 4:
         val =test(pesi1,genera_pesi(1,pesi1))
         if val == 1:
-            pesi1=vittoria(pesi1,coeff,4,risultati)
+            pesi1=vittoria(pesi1,coeff,risultati)
         elif  val == 2:
             pesi1=sconfitta(pesi1,coeff,4,risultati)
         else:
@@ -282,7 +281,7 @@ for passo in range(passi):
     if type == 5:
         val =test(pesi1,genera_pesi(2,pesi1))
         if val == 1:
-            pesi1=vittoria(pesi1,coeff,5,risultati)
+            pesi1=vittoria(pesi1,coeff,risultati)
         elif  val == 2:
             pesi1=sconfitta(pesi1,coeff,5,risultati)
         else:
@@ -291,7 +290,7 @@ for passo in range(passi):
     if type == 6:
         val =test(pesi1,genera_pesi(3,pesi1))
         if val == 1:
-            pesi1=vittoria(pesi1,coeff,6,risultati)
+            pesi1=vittoria(pesi1,coeff,risultati)
         elif  val == 2:
             pesi1=pesi1=sconfitta(pesi1,coeff,6,risultati)
         else:
