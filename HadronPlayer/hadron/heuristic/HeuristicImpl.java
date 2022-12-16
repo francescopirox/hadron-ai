@@ -32,9 +32,9 @@ public class HeuristicImpl implements Heuristic {
                     cs += 1;
                 else if (cellaSafe(b, col, i, j))
                     csa += 1;
-                else if ((i==0  || i==8 || j==0 || j==8) && cellaBorderSafe(b, i, j, 1 - col))
+                else if ((i==0  || i==8) ^ (j==0 || j==8) && cellaBorderSafe(b, i, j, 1 - col))
                     cs += 1;
-                else if ((i==0  || i==8 || j==0 || j==8) && cellaBorderSafe(b, i, j, col))
+                else if ((i==0  || i==8) ^ (j==0 || j==8) && cellaBorderSafe(b, i, j, col))
                     csa += 1;
                 else if ((i==0 || i==8) &&( j==0 || j==8) && cellaAngularStrictSafe(b, i, j))
                     css += 1;
@@ -47,20 +47,20 @@ public class HeuristicImpl implements Heuristic {
         if(co<5)
             fattoreCB=2;
 
-        if( css + cs % 2 == 0 && csa==0 && (9 * 9 - co-cb-css-cs)==0 ) {
-            fattoreSS = 4;
-            fattoreS = 2;
+        if( css + cs % 2 == 0 && csa==0 && (81 - co-cb-css-cs-csa)==0 ) {
+            fattoreSS = 8;
+            fattoreS = 6;
             if( (csa+css+cs)==0 && b.isFinal() )
                 return -10000D;
         }
-        if( css+cs % 2 == 1 && cb+co > 65 ) {
-            if( css % 2 == 1 )
-                fattoreSS = -10;
+        if( css+cs % 2 == 1 && cb+co+csa+css+cs > 65 ) {
+            if( cs % 2 == 1 )
+                fattoreS = -2;
             else
-               fattoreS = -20;
+               fattoreSS = -1;
         }
 
-        return pesi[0] * (9 * 9 - co-cb-css-cs-csa) + pesi[1] * fattoreCB *(cb+co) + pesi[2] * fattoreSS * css+pesi[3]*csa*fattoreSA +pesi[4] * cs * fattoreS;
+        return pesi[0] * (81 - co-cb-css-cs-csa) + pesi[1] * fattoreCB *(cb+co) + pesi[2] * fattoreSS * css+ pesi[3]*csa*fattoreSA +pesi[4] * cs * fattoreS;
 
     }
 
@@ -68,19 +68,19 @@ public class HeuristicImpl implements Heuristic {
 
         if(i == 0 && j!=0 && b.getCol(i+1 , j-1)!= col)
             return false;
-        else if(i==8 && j!=0 && b.getCol(i-1 , j-1)!= col)
+        if(i==8 && j!=0 && b.getCol(i-1 , j-1)!= col)
             return false;
-        else if(i==0 && j !=8  && b.getCol(i+1 , j+1)!= col)
+        if(i==0 && j !=8  && b.getCol(i+1 , j+1)!= col)
             return false;
-        else if(i==8 && j !=8  && b.getCol(i-1 , j+1)!= col)
+        if(i==8 && j !=8  && b.getCol(i-1 , j+1)!= col)
             return false;
-        else if(i != 0 && j==0 && b.getCol(i-1 , j+1)!= col)
+        if(i != 0 && j==0 && b.getCol(i-1 , j+1)!= col)
             return false;
-        else if(i!=8 && j==0 && b.getCol(i+1 , j+1)!= col)
+        if(i!=8 && j==0 && b.getCol(i+1 , j+1)!= col)
             return false;
-        else if(i!=0 && j ==8  && b.getCol(i-1 , j-1)!= col)
+        if(i!=0 && j ==8  && b.getCol(i-1 , j-1)!= col)
             return false;
-        else if(i!=8 && j ==8  && b.getCol(i-1 , j-1)!= col)
+        if(i!=8 && j ==8  && b.getCol(i-1 , j-1)!= col)
             return false;
         return true;
     }
@@ -91,9 +91,9 @@ public class HeuristicImpl implements Heuristic {
             return true;
         if(i==8 && j==8 && b.getCol(8,7)==-1 && b.getCol(7,8)==-1 && b.getCol(6,8)!=-1 && b.getCol(7,7)!=-1 && b.getCol(8,6)!=-1)
             return true;
-        if(i==8 && j==0 && b.getCol(8,1)==-1 && b.getCol(7,0)==-1 && b.getCol(6,0)!=-1 && b.getCol(7,1)!=-1 && b.getCol(8,2)!=-1)
+       if(i==8 && j==0 && b.getCol(8,1)==-1 && b.getCol(7,0)==-1 && b.getCol(6,0)!=-1 && b.getCol(7,1)!=-1 && b.getCol(8,2)!=-1)
             return true;
-        if(i==0 && j==8 && b.getCol(1,8)==-1 && b.getCol(0,7)==-1 && b.getCol(0,6)!=-1 && b.getCol(1,7)!=-1 && b.getCol(2,8)!=-1)
+       if(i==0 && j==8 && b.getCol(1,8)==-1 && b.getCol(0,7)==-1 && b.getCol(0,6)!=-1 && b.getCol(1,7)!=-1 && b.getCol(2,8)!=-1)
             return true;
         return false;
 
