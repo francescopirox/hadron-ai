@@ -50,10 +50,10 @@ public class HeuristicImpl implements Heuristic {
         if( css + cs % 2 == 0 && csa==0 && (81 - co-cb-css-cs-csa)==0 ) {
             fattoreSS = 8;
             fattoreS = 6;
-            if( (csa+css+cs)==0 && b.isFinal() )
+            if( (csa+css+cs)==0 && cb+co==81 )
                 return -10000D;
         }
-        if( css+cs % 2 == 1 && cb+co+csa+css+cs > 65 ) {
+        if( css+cs % 2 == 1 && cb+co+csa+css+cs > 75 ) {
             if( cs % 2 == 1 )
                 fattoreS = -2;
             else
